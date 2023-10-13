@@ -46,7 +46,7 @@ class TimerButton extends StatefulWidget {
   /// The builder for the custom button.
   final TimerButtonBuilder? timeBuilder;
 
-  /// The builder for the custom button.
+  /// Function to be called when the timer expires
   final VoidCallback? onCompleted;
 
   /// Constructor for the TimerButton
