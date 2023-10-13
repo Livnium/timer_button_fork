@@ -46,6 +46,9 @@ class TimerButton extends StatefulWidget {
   /// The builder for the custom button.
   final TimerButtonBuilder? timeBuilder;
 
+  /// Function to be called when the timer expires
+  final VoidCallback? onCompleted;
+
   /// Constructor for the TimerButton
   const TimerButton({
     Key? key,
@@ -59,6 +62,7 @@ class TimerButton extends StatefulWidget {
     this.buttonType = ButtonType.ElevatedButton,
     this.activeTextStyle,
     this.disabledTextStyle = const TextStyle(color: Colors.black45),
+    this.onCompleted,
   })  : timeBuilder = null,
         super(key: key);
 
@@ -69,6 +73,7 @@ class TimerButton extends StatefulWidget {
     required this.timeOutInSeconds,
     this.resetTimerOnPressed = true,
     required this.timeBuilder,
+    this.onCompleted,
   })  : label = '',
         secPostFix = _secPostFix,
         color = Colors.blue,
@@ -111,6 +116,7 @@ class _TimerButtonState extends State<TimerButton> {
           _startTimer();
         } else {
           timeUpFlag = true;
+          widget.onCompleted?.call();
         }
       });
     });
